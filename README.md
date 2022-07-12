@@ -1,2 +1,2 @@
-# script-for-bulding-revanced
+# Script for building ReVanced (BRWF)
 Scripts that automatically download and build Youtube Revanced
