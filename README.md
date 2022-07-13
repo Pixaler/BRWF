@@ -10,7 +10,7 @@ Scripts that automatically download and build Youtube Revanced
 1. Rename YouTube apk to ***youtube1.apk***. YouTube Music apk to ***youtube2.apk***.
 I recommend do patch to version which pointed in [ReVanced Documentaion](https://github.com/revanced/revanced-documentation/wiki/Prerequisites)
 2. Put apk into platform-tools folder
-3. Run script
+3. Run build.cmd
 # Notice
 - When run script first time type this before:
 ```
