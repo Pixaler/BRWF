@@ -7,6 +7,14 @@ Scripts that automatically download and build Youtube Revanced
 - [GitHub CLI](https://cli.github.com/)
 - [YouTube](https://www.apkmirror.com/apk/google-inc/youtube/) and [YouTube Music](https://www.apkmirror.com/apk/google-inc/youtube-music/) apk
 ## Instalation
-1. Rename YouTube apk to ***youtube1.apk***. YouTube Music apk to ***youtube2.apk***
-2. Put batch script and apk into platform-tools folder
+1. Rename YouTube apk to ***youtube1.apk***. YouTube Music apk to ***youtube2.apk***.
+I recommend do patch to version which pointed in [ReVanced Documentaion](https://github.com/revanced/revanced-documentation/wiki/Prerequisites)
+2. Put apk into platform-tools folder
 3. Run script
+# Notice
+- When run script first time type this before:
+```
+adb shell su -c exit
+```
+It is necessary to check root access 
+- Don't forget to trust your PC when it try to connect to your phone
