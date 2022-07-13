@@ -7,7 +7,7 @@ Scripts that automatically download and build Youtube Revanced
 - [YouTube](https://www.apkmirror.com/apk/google-inc/youtube/) and [YouTube Music](https://www.apkmirror.com/apk/google-inc/youtube-music/) apk
 ## Instalation
 1. Rename YouTube apk to ***youtube1.apk***. YouTube Music apk to ***youtube2.apk***.
-I recommend do patch to version which pointed in [ReVanced Documentaion](https://github.com/revanced/revanced-documentation/wiki/Prerequisites)
+I recommend do patch to version which pointed in [ReVanced Documentation](https://github.com/revanced/revanced-documentation/wiki/Prerequisites)
 2. Put apk into platform-tools folder
 3. Run build.cmd
 # Notice
