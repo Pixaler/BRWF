@@ -6,7 +6,6 @@ if %answer%==y (
 :: Delete old files
     echo ---Delete previous files-- 
     del /q /s revanced*.jar
-    del /q /s revanced*.dex
     del /q /s app-release-unsigned.apk
 :: Download ReVanced Integrations
     echo ---Download ReVanced Integrations---
@@ -19,6 +18,7 @@ if %answer%==y (
 :: Download ReVanced CLI
     echo ---Download ReVanced Patches---
     powershell.exe ./rp.ps1
+    del /q /s revanced*.dex
     timeout 5 > NUL /nobreak
 :: Rename files
     echo ---Rename files---
@@ -55,35 +55,70 @@ if %ans2%==y (
 
 ::Input your ADB number devices
 :changeadb
-set /p adbw=Type your adb number: 
+set /p adbw=Type or copy your adb number (only number): 
 echo %adbw%
 echo %adbw% > adb.txt
 goto:adb
 
-::What do you want to builds
+::What do you want to build
 :choice2
 echo 1. YouTube ReVanced Root
 echo 2. Youtube Music Revanced Root
 echo 3. All Root  
+echo 4. YouTube ReVanced Non-Root
+echo 5. YouTube Music ReVanced Non-Root
+echo 6. All Non-Root
 set /P option=You options is: 
+
 if %option%==1 (
     echo "---Build Youtube ReVanced Root---"
-    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --mount
+    echo ""
+    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --mount
+    goto:eof
 )
 if %option%==2 (
-    echo "---Build Youtube Music Revanced (Root)---"
-    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube2.apk -c -d %adb% -o music.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --mount
+    echo "---Build Youtube Music Revanced Root---"
+    echo ""
+    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube2.apk -c -d %adb% -o revanced_music.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --mount
+    pause
+    goto:eof
 )
 if %option%==3 (
-    echo "---Build Youtube ReVanced (Root)---"
-    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --mount
-    echo "---Build Youtube Music Revanced (Root)---"
-    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube2.apk -c -d %adb% -o music.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --mount
-) else (
-    goto:eof    
+    echo "---Build Youtube ReVanced Root---"
+    echo ""
+    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --mount
+    echo "---Build Youtube Music Revanced Root---"
+    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube2.apk -c -d %adb% -o revanced_music.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --mount
+    pause
+    goto:eof
+) 
+if %option%==4 (
+    echo "---Build Youtube ReVanced Non-Root---"
+    echo ""
+    echo "If display any warning that prevent instaling app through ADB - apply it!"
+    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk
+    pause
+    goto:eof
 )
-
-
-    
-
-   
+if %option%==5 (
+    echo "---Build Youtube Music Revanced Non-Root---"
+    echo ""
+    echo "If display any warning that prevent instaling app through ADB - apply it!"
+    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube2.apk -c -d %adb% -o revanced_music.apk -b revanced-patches.jar -m app-release-unsigned.apk
+    pause
+    goto:eof
+)
+if %option%==6 (
+    echo "---Build Youtube ReVanced Non-Root---"
+    echo ""
+    echo "If display any warning that prevent instaling app through ADB - apply it!"
+    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk
+    echo "---Build Youtube Music Revanced Non-Root---"
+    echo ""
+    echo "If display any warning that prevent instaling app through ADB - apply it!"
+    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube2.apk -c -d %adb% -o revanced_music.apk -b revanced-patches.jar -m app-release-unsigned.apk
+    pause
+    goto:eof
+) else (
+    goto:choice2
+)  
