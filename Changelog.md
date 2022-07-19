@@ -4,5 +4,5 @@
 2. Update YouTube 17.27.39 and YouTube Music 5.14.53 apk
 3. Add to release mircog.apk for Non-Root version. You need to install it manually
 
-## Fixies
+## Fixes
 1. Script delete unnecessary .dex file
