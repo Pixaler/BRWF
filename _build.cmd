@@ -1,10 +1,27 @@
 @echo off
-::Download or not download resources
-:choice1
+:: Check apk file for script
+:checkytapk
+if not exist youtube1.apk (
+    echo "Please download YouTube apk. Then rename YouTube to youtube1.apk"
+    echo "Check avaliable version that support patch: https://github.com/revanced/revanced-patches"
+    pause
+    goto:checkapk
+)
+checkytmapk
+if not exist youtube2.apk (
+    echo "Please downloadYouTube Music apk. Then rename YouTube Music to youtube2.apk"
+    echo "Check avaliable version that support patch: https://github.com/revanced/revanced-patches"
+    pause
+    goto:checkytmapk
+)
+
+:: Download or not download resources
+:choice2
 set /p answer=Download files or update files?(y/n): 
 if %answer%==y (
 :: Delete old files
     echo ---Delete previous files-- 
+    del /q /s revanced*.dex
     del /q /s revanced*.jar
     del /q /s app-release-unsigned.apk
 :: Download ReVanced Integrations
@@ -29,7 +46,7 @@ if %answer%==y (
 if %answer%==n (
     goto:adb
 ) else (
-    goto:choice1
+    goto:choice2
 )
 
 :: Check ADB connection
@@ -39,7 +56,7 @@ adb devices
 echo Garant root to shell on your phone if it's stuck!
 adb shell su -c exit
 
-::Read adb number
+:: Read adb number
 set /p adb=< %cd%\adb.txt
 echo Your devices: %adb%
 set /p ans2=Is it right?(y/n): 
@@ -48,20 +65,20 @@ if %ans2%==n (
     goto:changeadb
 ) 
 if %ans2%==y (
-    goto:choice2
+    goto:choice3
 ) else (
     goto:adb
 )
 
-::Input your ADB number devices
+:: Input your ADB number devices
 :changeadb
 set /p adbw=Type or copy your adb number (only number): 
 echo %adbw%
 echo %adbw% > adb.txt
 goto:adb
 
-::What do you want to build
-:choice2
+:: What do you want to build
+:choice3
 echo 1. YouTube ReVanced Root
 echo 2. Youtube Music Revanced Root
 echo 3. All Root  
@@ -120,5 +137,5 @@ if %option%==6 (
     pause
     goto:eof
 ) else (
-    goto:choice2
+    goto:choice3
 )  
