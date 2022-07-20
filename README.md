@@ -1,13 +1,14 @@
 # Script for building ReVanced (BRWF)
-Scripts that automatically download and build Youtube Revanced
+Scripts that automatically download and build YouTube ReVanced
 
 ## Requirements
-- [Zulu JDK 17](https://www.azul.com/downloads/?version=java-17-lts&os=windows&architecture=x86-64-bit&package=jdk)
-- [YouTube](https://www.apkmirror.com/apk/google-inc/youtube/) and [YouTube Music](https://www.apkmirror.com/apk/google-inc/youtube-music/) apk
-## Instalation
-1. Rename YouTube apk to ***youtube1.apk***. YouTube Music apk to ***youtube2.apk***.
-I recommend do patch to version which pointed in [ReVanced Documentation](https://github.com/revanced/revanced-documentation/wiki/Prerequisites)
-2. Put apk into platform-tools folder
-3. Run build.cmd
+No Requirements are needed
+
+If you what to build another version of YouTube or YouTube Music, rename YouTube apk to ***youtube1.apk*** and YouTube Music to ***youtube2.apk*** and put it into ***BRWF*** folder.
+## Using
+Run ***build.cmd***
+
+If you build Non-Root version, don't foget to install ***microg.apk***. They provided into archive.
 # Notice
 - Don't forget to trust your PC when it try to connect ADB to your phone
+- WAtching your phone. Sometimes display message that need to apply
