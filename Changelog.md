@@ -10,3 +10,11 @@
 # v0.5.1
 ## Changes
 1. Add checking apk files in folder
+
+# v0.6
+## Changes
+1. Add menu that propose install stock apk
+2. Add menu that propose uninstall stock apk
+
+## Fixes
+1. ReVanced team was fix something so now you can build YouTube Music Root
