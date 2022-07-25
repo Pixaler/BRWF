@@ -18,3 +18,8 @@
 
 ## Fixes
 1. ReVanced team was fix something so now you can build YouTube Music Root
+
+# v0.6.1 
+## Changes
+1. Update YT apk to 17.28.34
+2. Exclude premium-heading and sponsorblock patches. Include swipe-controls

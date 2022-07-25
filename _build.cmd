@@ -17,7 +17,7 @@ if not exist youtube2.apk (
 
 :: Download or not download resources
 :choice2
-set /p answer=Download files or update files?(y/n): 
+set /p answer=Download files or update files?(y/n):  
 if %answer%==y (
 :: Delete old files
     echo ---Delete previous files-- 
@@ -83,7 +83,7 @@ echo 1. Uninstall YouTube
 echo 2. Uninstall YouTube Music
 echo 3. Uninstall all
 echo 4. None
-set /p unin=Your choice:
+set /p unin=Your choice: 
 if %unin%==1 (
     echo "---Uninstalling YouTube---"
     adb -s %adb% uninstall com.google.android.youtube
@@ -115,7 +115,7 @@ echo 3. Install Vanced Microg
 echo 4. Install all for Root
 echo 5. Install all for Non-Root
 echo 6. None
-set /p insyt=Your choice:
+set /p insyt=Your choice: 
 if %insyt%==1 (
     echo "---Installing YouTube---"
     adb -s %adb% install youtube1.apk
@@ -168,7 +168,7 @@ set /P option=You options is:
 if %option%==1 (
     echo "---Build Youtube ReVanced Root---"
     echo ""
-    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --mount
+    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support -e premium-heading -e sponsorblock -i swipe-controls --mount
     pause
     goto:eof
 )
@@ -182,7 +182,7 @@ if %option%==2 (
 if %option%==3 (
     echo "---Build Youtube ReVanced Root---"
     echo ""
-    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --mount
+    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support -e premium-heading -e sponsorblock -i swipe-controls --mount
     pause
     echo "---Build Youtube Music Revanced Root---"
     start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube2.apk -c -d %adb% -o revanced_music.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --mount
@@ -193,7 +193,7 @@ if %option%==4 (
     echo "---Build Youtube ReVanced Non-Root---"
     echo ""
     echo "If display any warning that prevent instaling app through ADB - apply it!"
-    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk
+    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk -e premium-heading -e sponsorblock -i swipe-controls
     pause
     goto:eof
 )
@@ -209,7 +209,7 @@ if %option%==6 (
     echo "---Build Youtube ReVanced Non-Root---"
     echo ""
     echo "If display any warning that prevent instaling app through ADB - apply it!"
-    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk
+    start "" C:/BRWF/zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d %adb% -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk -e premium-heading -e sponsorblock -i swipe-controls
     pause
     echo "---Build Youtube Music Revanced Non-Root---"
     echo ""
