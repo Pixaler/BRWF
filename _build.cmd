@@ -106,11 +106,11 @@ call :menu-n-%option% 2>nul ||(
 :downloadapps
     echo ---Download YouTube 17.29.34---
     del /q /s youtube1.apk
-    start "" C:/BRWF/wget/bin/wget.exe --content-disposition https://cdn-118.anonfiles.com/Z1x1451ay9/0ff204f5-1659259027/youtube1.apk
+    start "" C:/BRWF/wget/bin/wget.exe --content-disposition https://dl1.topfiles.net/files/2/1159/48171/M0tKREa7VU44Y0VKMGtDUGRKZHRQNkdXVk9oNDg1cVZaM2l4bGVwd0ppZGpIUT06Og3JocBjv2oRotfsy8kCs2o/youtube_17.29.34.apk -O youtube1.apk
     pause
     echo ---Download YouTube Music 5.14.53---
     del /q /s youtube2.apk
-    start "" C:/BRWF/wget/bin/wget.exe --content-disposition https://cdn-133.anonfiles.com/11r44b1bye/da3f2112-1659258556/youtube2.apk
+    start "" C:/BRWF/wget/bin/wget.exe --content-disposition https://dl3.topfiles.net/files/2/482/46522/ekF1RGuXa4JKVVA5N0pKcFJqekY1YkpDOFhxRDVPWEhlRTJTd3JFUjVQeWJCZz06OmpIQwmhHrCKAvEXUQA8Dik/youtube-music-arm64-v8a_5.14.53.apk -O youtube2.apk
     pause
     goto :downloadrevancedoption
 
