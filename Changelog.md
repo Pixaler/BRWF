@@ -48,4 +48,4 @@
 3. Check Execution Policy
 
 ## Fixes
-1. Downloading now fixied
+1. Downloading now fixed
