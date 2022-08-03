@@ -40,3 +40,12 @@
 ## Changes
 1. Return options to not download revanced resource
 2. Add downloading YT or YT Music. Its increase speed of publishing releases much faster
+
+# v0.9
+## Changes
+1. All script now running in powershell
+2. Add downloading Java. Make script for releases much lighter
+3. Check Execution Policy
+
+## Fixes
+1. Downloading now fixied

@@ -1,1 +1,1 @@
-powershell.exe .\_buildpwsh.ps1
+start "" powershell.exe .\_buildpwsh.ps1

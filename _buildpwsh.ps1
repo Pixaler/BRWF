@@ -1,15 +1,27 @@
-# Download or not apk files
-function downloadapps {
-    Write-Host "---Download YouTube 17.29.34---"
+function downloadyt {
+    Write-Host "---Delete previous apk files---"
+    Write-Host "."
     Remove-Item youtube1.apk
-    ./wget/bin/wget.exe --content-disposition https://dl1.topfiles.net/files/2/1159/48171/TVZTTUhwgfZ4YmxqN1ZtSHd4VW1HZVp6T0VYMDlicnl0VVYrNmtteDY4ZXRSTT06Ovu33dVQN6CdJDvczZSgrIk/youtube_17.29.34.apk -O youtube1.apk
-    Read-Host -Prompt "Press Enter to continue"
-    Write-Host "---Download YouTube Music 5.14.53---"
-    Remove-Item youtube2.apk
-    ./wget/bin/wget.exe --content-disposition https://dl3.topfiles.net/files/2/482/46522/NmR6cWR1rLtnMk9IaExveFZZc0pma1JvbGw2MGVxU3A5SVA1WjNPcHBObUl4WT06OpP3NHltkCHItrylSnJeKZc/youtube-music-arm64-v8a_5.14.53.apk -O youtube2.apk
-    Read-Host -Prompt "Press Enter to continue"
+    Write-Host "."
+    Write-Host "---Download YT---"
+    $linkyt = ((Invoke-WebRequest -Uri 'https://android.biblprog.org.ua/ua/youtube/download/').Links | Where href -like "*youtube_17.29.34.apk*").href
+    Write-Host "."
+    Write-Host "."
+    Write-Host "Wait"
+    .\wget\bin\wget.exe --content-disposition $linkyt -O youtube1.apk
 }
-
+function downloadytm {
+    Write-Host "---Delete previous apk files---"
+    Write-Host "."
+    Remove-Item youtube2.apk
+    Write-Host "."
+    Write-Host "---Download YT Music---"
+    $linkytm = ((Invoke-WebRequest -Uri 'https://android.biblprog.org.ua/ru/youtube-music/download/').Links | Where href -like "*youtube-music-arm64-v8a_5.16.51.apk*").href 
+    Write-Host "."
+    Write-Host "."
+    Write-Host "Wait"
+    .\wget\bin\wget.exe --content-disposition $linkytm -O youtube2.apk
+}
 function downloadrevanced {
 # Delete old files
     Write-Host "---Delete previous files---"
@@ -25,7 +37,7 @@ function downloadrevanced {
     Write-Host "."
     $LinkRI = 'https://api.github.com/repos/revanced/revanced-integrations/releases/latest'   
     $DownloadLinkRI = (((Invoke-WebRequest $LinkRI) | ConvertFrom-Json).assets.browser_download_url | select-string -Pattern 'app-release-unsigned').Line
-    ./wget/bin/wget.exe --content-disposition $DownloadLinkRI
+    .\wget\bin\wget.exe --content-disposition $DownloadLinkRI
     Start-Sleep -Seconds 5
 
 # Download ReVanced CLI
@@ -34,7 +46,7 @@ function downloadrevanced {
     Write-Host "."
     $LinkRCLI = 'https://api.github.com/repos/revanced/revanced-patches/releases/latest'   
     $downloadLinkRCLI = (((Invoke-WebRequest $LinkRCLI) | ConvertFrom-Json).assets.browser_download_url | select-string -Pattern 'revanced-patches').Line
-    ./wget/bin/wget.exe --content-disposition $downloadLinkRCLI -O revanced-patches.jar
+    .\wget\bin\wget.exe --content-disposition $downloadLinkRCLI -O revanced-patches.jar
     Start-Sleep -Seconds 5
 
 # Download ReVanced CLI
@@ -43,80 +55,56 @@ function downloadrevanced {
     Write-Host "."
     $LinkRCLI = 'https://api.github.com/repos/revanced/revanced-cli/releases/latest'   
     $DownloadLinkRCLI = (((Invoke-WebRequest $LinkRCLI) | ConvertFrom-Json).assets.browser_download_url | select-string -Pattern 'revanced-cli').Line
-    ./wget/bin/wget.exe --content-disposition $DownloadLinkRCLI -O revanced-cli-all.jar
+    .\wget\bin\wget.exe --content-disposition $DownloadLinkRCLI -O revanced-cli-all.jar
     Remove-Item revanced*.dex
     Start-Sleep -Seconds 5
 }
-
-
-# Input your ADB number devices
-function changeadb {
-    $adbw = Read-Host -Prompt "Type or copy your adb number (only number)"
-    Write-Host "."
-    Write-Host "."
-    "$adbw" | Out-File -FilePath .\adb.txt
-    $adb = Get-Content -Path .\adb.txt
-    return $adb
-}
-
-
-# Show your ADB number
-function mesadb {
-    $adb = Get-Content -Path .\adb.txt
-    Write-Host "If its diffrent delete adb.txt and run script again or copy your ADB device number and replace it instead of number in adb.txt"
-    Write-Host "."
-    Write-Host "."
-    Write-Host "."
-    Write-Host "."
-    return $adb
-}
-
 
 function ytroot {
     Write-Host "---Uninstalling YouTube---"
     Write-Host "."
     Write-Host "."
-    ./adb -s $adb uninstall com.google.android.youtube
+    .\adb.exe -s $adb uninstall com.google.android.youtube
     Write-Host "---Installing YouTube---"
     Write-Host "."
     Write-Host "."
-    ./adb -s $adb install youtube1.apk
+    .\adb.exe -s $adb install youtube1.apk
     Write-Host "---Build Youtube ReVanced Root---"
     Write-Host "."
     Write-Host "."
     Write-Host "When building is over, close app in your phone"
-    ./zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d $adb -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support -e premium-heading -e custom-branding -e sponsorblock -i swipe-controls --mount
+    .\zulu17\bin\java.exe -jar revanced-cli-all.jar -a youtube1.apk -c -d $adb -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support -e premium-heading -e custom-branding -e sponsorblock -i swipe-controls --experimental --mount
     Read-Host -Prompt "Press Enter to continue"
 }
 function ytmroot {
     Write-Host "---Uninstalling YouTube Music---"
     Write-Host "."
     Write-Host "."
-    ./adb -s $adb uninstall com.google.android.apps.youtube.music
+    .\adb.exe -s $adb uninstall com.google.android.apps.youtube.music
     Write-Host ---Installing YouTube Music---
     Write-Host "."
     Write-Host "."
-    ./adb -s $adb install youtube2.apk
+    .\adb.exe -s $adb install youtube2.apk
     Write-Host "---Build Youtube Music Revanced Root---"
     Write-Host "."
     Write-Host "."
     Write-Host "When building is over, close app in your phone"
-    ./zulu17/bin/java -jar revanced-cli-all.jar -a youtube2.apk -c -d $adb -o revanced_music.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --mount
+    .\zulu17\bin\java.exe -jar revanced-cli-all.jar -a youtube2.apk -c -d $adb -o revanced_music.apk -b revanced-patches.jar -m app-release-unsigned.apk -e microg-support --experimental --mount
     Read-Host -Prompt "Press Enter to continue"
 }
 function ytnonroot {
     Write-Host "---Uninstalling YouTube---"
     Write-Host "."
     Write-Host "."
-    ./adb -s $adb uninstall com.google.android.youtube
+    .\adb.exe -s $adb uninstall com.google.android.youtube
     Write-Host "---Installing Vanced Microg---"
     Write-Host "."
     Write-Host "."
-    ./adb -s $adb install microg.apk
+    .\adb.exe -s $adb install microg.apk
     Write-Host "---Installing YouTube---"
     Write-Host "."
     Write-Host "."
-    ./adb -s $adb install youtube1.apk
+    .\adb.exe -s $adb install youtube1.apk
     Write-Host "---Build Youtube ReVanced Non-Root---"
     Write-Host "."
     Write-Host "."
@@ -124,22 +112,22 @@ function ytnonroot {
     Write-Host "."
     Write-Host "."
     Write-Host "When building is over, close app in your phone"
-    ./zulu17/bin/java -jar revanced-cli-all.jar -a youtube1.apk -c -d $adb -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk -e premium-heading -e custom-branding -e sponsorblock -i swipe-controls
+    .\zulu17\bin\java.exe -jar revanced-cli-all.jar -a youtube1.apk -c -d $adb -o revanced_youtube.apk -b revanced-patches.jar -m app-release-unsigned.apk -e premium-heading -e custom-branding -e sponsorblock -i swipe-controls --experimental
     Read-Host -Prompt "Press Enter to continue"
 }
 function ytmnonroot {
     Write-Host "---Uninstalling YouTube Music---"
     Write-Host "."
     Write-Host "."
-    ./adb -s $adb uninstall com.google.android.apps.youtube.music
+    .\adb.exe -s $adb uninstall com.google.android.apps.youtube.music
     Write-Host "---Installing Vanced Microg---"
     Write-Host "."
     Write-Host "."
-    ./adb -s $adb install microg.apk
+    .\adb.exe -s $adb install microg.apk
     Write-Host "---Installing YouTube Music---"
     Write-Host "."
     Write-Host "."
-    ./adb -s $adb install youtube2.apk
+    .\adb.exe -s $adb install youtube2.apk
     Write-Host "---Build Youtube Music Revanced Non-Root---"
     Write-Host "."
     Write-Host "."
@@ -147,22 +135,52 @@ function ytmnonroot {
     Write-Host "."
     Write-Host "."
     Write-Host "When building is over, close app on your phone"
-    ./zulu17/bin/java -jar revanced-cli-all.jar -a youtube2.apk -c -d $adb -o revanced_music.apk -b revanced-patches.jar -m app-release-unsigned.apk
+    .\zulu17\bin\java.exe -jar revanced-cli-all.jar -a youtube2.apk -c -d $adb -o revanced_music.apk -b revanced-patches.jar -m app-release-unsigned.apk --experimental
     Read-Host -Prompt "Press Enter to continue"
 }
 
-Clear-Host
-$downloadyt = Read-Host -Prompt "Download YT apk (y/n)"
 
-if ($downloadyt -like 'y') {
-    downloadapps
+$java = Test-Path -Path .\zulu17\bin\java.exe -PathType Leaf
+
+if ($java -like $false)
+{
+    Write-Host "---Download Java---"
+    Write-Host "."
+    Write-Host "."
+    .\wget\bin\wget.exe https://cdn.azul.com/zulu/bin/zulu17.36.13-ca-jdk17.0.4-win_x64.zip
+    Write-Host "---Extract archive---"
+    Write-Host "."
+    Write-Host "."
+    Expand-Archive -LiteralPath './zulu17.36.13-ca-jdk17.0.4-win_x64.zip' -DestinationPath .
+    Write-Host "---Rename folder---"
+    Write-Host "."
+    Write-Host "."
+    Rename-Item .\zulu17.36.13-ca-jdk17.0.4-win_x64 .\zulu17
+    Write-Host "---Delete archive---"
+    Write-Host "."
+    Write-Host "."
+    Remove-Item zulu17.36.13-ca-jdk17.0.4-win_x64.zip
 }
-if ($downloadyt -like 'n') {
+
+$policy = Get-ExecutionPolicy
+if ($policy -like 'Restricted')
+{
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+}
+
+Write-Host "Download apk files? (y/n)"
+$downloadrevanced = Read-Host -Prompt "You options is"
+if ( $downloadrevanced -like 'y' ) {
+    downloadyt
+    Clear-Host
+    downloadytm
+}
+if ($downloadrevanced -like 'n') {
     Clear-Host
 }
 
+
 # Download or not revanced files
-Clear-Host
 Write-Host "Download revanced files? (y/n)"
 $downloadrevanced = Read-Host -Prompt "You options is"
 
@@ -178,13 +196,13 @@ Clear-Host
 Write-Host "---Check ADB connection---"
 Write-Host "."
 Write-Host "."
-./adb devices
+.\adb.exe devices
 Write-Host "Give ADB access to this PC, if its needed"
 Write-Host "."
 Start-Sleep -Seconds 5
 Write-Host "."
 Write-Host "Garant root to shell on your phone, if it's stuck!"
-./adb shell su -c exit
+.\adb.exe shell su -c exit
 Write-Host "."
 Start-Sleep -Seconds 5
 Write-Host "."
@@ -192,10 +210,19 @@ Write-Host "."
 # Read adb number
 $state = Test-Path -Path C:\BRWF\adb.txt -PathType Leaf
 if ( $state -like $false) {
-    changeadb
+    $adbw = Read-Host -Prompt "Type or copy your adb number (only number)"
+    Write-Host "."
+    Write-Host "."
+    "$adbw" | Out-File -FilePath .\adb.txt
+    $adb = Get-Content -Path .\adb.txt
 } 
 if ( $state -like $true) {
-    mesadb
+    $adb = Get-Content -Path .\adb.txt
+    Write-Host "If its diffrent delete adb.txt and run script again or copy your ADB device number and replace it instead of number in adb.txt"
+    Write-Host "."
+    Write-Host "."
+    Write-Host "."
+    Write-Host "."
 }
 
 # What do you want to build
@@ -235,4 +262,3 @@ switch ($option) {
         Write-Host "."
     }
 }
-
