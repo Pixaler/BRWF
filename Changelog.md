@@ -49,3 +49,8 @@
 
 ## Fixes
 1. Downloading now fixed
+
+# v0.9.1
+## Changes
+1. Improve adb connection
+2. Add adb checking
