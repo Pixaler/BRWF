@@ -64,11 +64,11 @@ function ytroot {
     Write-Host "---Uninstalling YouTube---"
     Write-Host "."
     Write-Host "."
-    .\adb.exe -s $adb uninstall com.google.android.youtube
+    .\platform-tools\adb.exe -s $adb uninstall com.google.android.youtube
     Write-Host "---Installing YouTube---"
     Write-Host "."
     Write-Host "."
-    .\adb.exe -s $adb install youtube1.apk
+    .\platform-tools\adb.exe -s $adb install youtube1.apk
     Write-Host "---Build Youtube ReVanced Root---"
     Write-Host "."
     Write-Host "."
@@ -80,11 +80,11 @@ function ytmroot {
     Write-Host "---Uninstalling YouTube Music---"
     Write-Host "."
     Write-Host "."
-    .\adb.exe -s $adb uninstall com.google.android.apps.youtube.music
+    .\platform-tools\adb.exe -s $adb uninstall com.google.android.apps.youtube.music
     Write-Host ---Installing YouTube Music---
     Write-Host "."
     Write-Host "."
-    .\adb.exe -s $adb install youtube2.apk
+    .\platform-tools\adb.exe -s $adb install youtube2.apk
     Write-Host "---Build Youtube Music Revanced Root---"
     Write-Host "."
     Write-Host "."
@@ -96,15 +96,15 @@ function ytnonroot {
     Write-Host "---Uninstalling YouTube---"
     Write-Host "."
     Write-Host "."
-    .\adb.exe -s $adb uninstall com.google.android.youtube
+    .\platform-tools\adb.exe -s $adb uninstall com.google.android.youtube
     Write-Host "---Installing Vanced Microg---"
     Write-Host "."
     Write-Host "."
-    .\adb.exe -s $adb install microg.apk
+    .\platform-tools\adb.exe -s $adb install microg.apk
     Write-Host "---Installing YouTube---"
     Write-Host "."
     Write-Host "."
-    .\adb.exe -s $adb install youtube1.apk
+    .\platform-tools\adb.exe -s $adb install youtube1.apk
     Write-Host "---Build Youtube ReVanced Non-Root---"
     Write-Host "."
     Write-Host "."
@@ -119,15 +119,15 @@ function ytmnonroot {
     Write-Host "---Uninstalling YouTube Music---"
     Write-Host "."
     Write-Host "."
-    .\adb.exe -s $adb uninstall com.google.android.apps.youtube.music
+    .\platform-tools\adb.exe -s $adb uninstall com.google.android.apps.youtube.music
     Write-Host "---Installing Vanced Microg---"
     Write-Host "."
     Write-Host "."
-    .\adb.exe -s $adb install microg.apk
+    .\platform-tools\adb.exe -s $adb install microg.apk
     Write-Host "---Installing YouTube Music---"
     Write-Host "."
     Write-Host "."
-    .\adb.exe -s $adb install youtube2.apk
+    .\platform-tools\adb.exe -s $adb install youtube2.apk
     Write-Host "---Build Youtube Music Revanced Non-Root---"
     Write-Host "."
     Write-Host "."
@@ -195,14 +195,17 @@ if ($downloadrevanced -like 'n') {
 Clear-Host
 Write-Host "---Check ADB connection---"
 Write-Host "."
-Write-Host "."
-.\adb.exe devices
-Write-Host "Give ADB access to this PC, if its needed"
-Write-Host "."
-Start-Sleep -Seconds 5
-Write-Host "."
+.\platform-tools\adb.exe kill-server
+.\platform-tools\adb.exe start-server
+do {
+    Write-Host "."
+    Start-Sleep -Seconds 5
+    Write-Host "Give ADB access to this PC, if its needed"
+    .\platform-tools\adb.exe devices 
+    $checkadb = .\platform-tools\adb.exe devices
+} while ($checkadb -match 'device' -eq $true)
 Write-Host "Garant root to shell on your phone, if it's stuck!"
-.\adb.exe shell su -c exit
+.\platform-tools\adb.exe shell su -c exit
 Write-Host "."
 Start-Sleep -Seconds 5
 Write-Host "."
