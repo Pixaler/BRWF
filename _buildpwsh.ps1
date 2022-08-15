@@ -4,11 +4,11 @@ function downloadyt {
     Remove-Item youtube1.apk
     Write-Host "."
     Write-Host "---Download YT---"
-    $linkyt = ((Invoke-WebRequest -Uri 'https://android.biblprog.org.ua/ua/youtube/download/').Links | Where href -like "*youtube_17.29.34.apk*").href
+    $linkyt = ((Invoke-WebRequest -Uri 'https://android.biblprog.org.ua/ru/youtube/download/').Links | Where href -like "*youtube_17.31.35.apk*").href
     Write-Host "."
     Write-Host "."
     Write-Host "Wait"
-    .\wget\bin\wget.exe --content-disposition $linkyt -O youtube1.apk
+    .\wget\bin\wget.exe $linkyt -O youtube1.apk
 }
 function downloadytm {
     Write-Host "---Delete previous apk files---"
@@ -16,11 +16,11 @@ function downloadytm {
     Remove-Item youtube2.apk
     Write-Host "."
     Write-Host "---Download YT Music---"
-    $linkytm = ((Invoke-WebRequest -Uri 'https://android.biblprog.org.ua/ru/youtube-music/download/').Links | Where href -like "*youtube-music-arm64-v8a_5.16.51.apk*").href 
+    $linkytm = ((Invoke-WebRequest -Uri 'https://android.biblprog.org.ua/ru/youtube-music/download/').Links | Where href -like "*youtube-music-arm64-v8a_5.17.51.apk*").href 
     Write-Host "."
     Write-Host "."
     Write-Host "Wait"
-    .\wget\bin\wget.exe --content-disposition $linkytm -O youtube2.apk
+    .\wget\bin\wget.exe $linkytm -O youtube2.apk
 }
 function downloadrevanced {
 # Delete old files
