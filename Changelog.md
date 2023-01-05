@@ -1,3 +1,9 @@
+# v0.9.3
+## Changes
+1. YouTube update to 17.49.37
+2. YouTube Music update to 5.36.51
+3. Fix revanced integrations download
+
 # v0.9.2
 ## Changes
 1. YouTube update to 17.31.35
