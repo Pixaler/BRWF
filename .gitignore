@@ -2,7 +2,10 @@
 /wget
 /zulu17
 /revanced-cache
-build.py
+revanced-integrations.apk
+revanced-cli-all.jar
+revanced-patches.jar
 adb.txt
 youtube1.apk
 youtube2.apk
+play.py
