@@ -1,9 +1,6 @@
 # Script for building ReVanced (Build ReVanced Without F@#k)
 Scripts that automatically download and build YouTube ReVanced on Windows 10
 
-# END OF LINE
-- Where find ready build of ReVanced - https://t.me/rvx_lite
-
 ## Requirements
 - Enable ADB on your phone and connect to PC
 
