@@ -10,18 +10,7 @@ function downloadyt {
     Write-Host "Wait"
     .\wget\wget.exe $linkyt -O youtube1.apk
 }
-function downloadytm {
-    Write-Host "---Delete previous apk files---"
-    Write-Host "."
-    Remove-Item youtube2.apk
-    Write-Host "."
-    Write-Host "---Download YT Music---"
-    $linkytm = ((Invoke-WebRequest -Uri 'https://android.biblprog.org.ua/ru/youtube-music/download/').Links | Where href -like "*youtube-music-arm64-v8a_5.36.51.apk*").href 
-    Write-Host "."
-    Write-Host "."
-    Write-Host "Wait"
-    .\wget\wget.exe $linkytm -O youtube2.apk
-}
+
 function downloadrevanced {
 # Delete old files
     Write-Host "---Delete previous files---"
@@ -40,8 +29,8 @@ function downloadrevanced {
     .\wget\wget.exe --content-disposition $DownloadLinkRI -O revanced-integrations.apk
     Start-Sleep -Seconds 5
 
-# Download ReVanced CLI
-    Write-Host "---Download ReVanced CLI---"
+# Download ReVanced Patches
+    Write-Host "---Download ReVanced Patches---"
     Write-Host "."
     Write-Host "."
     $LinkRCLI = 'https://api.github.com/repos/revanced/revanced-patches/releases/latest'   
@@ -76,22 +65,7 @@ function ytroot {
     .\zulu17\bin\java.exe -jar revanced-cli-all.jar -a youtube1.apk -c -d $adb -o revanced_youtube.apk -b revanced-patches.jar -m revanced-integrations.apk -e microg-support -e premium-heading -e custom-branding -e sponsorblock -i swipe-controls --experimental --mount
     Read-Host -Prompt "Press Enter to continue"
 }
-function ytmroot {
-    Write-Host "---Uninstalling YouTube Music---"
-    Write-Host "."
-    Write-Host "."
-    .\platform-tools\adb.exe -s $adb uninstall com.google.android.apps.youtube.music
-    Write-Host ---Installing YouTube Music---
-    Write-Host "."
-    Write-Host "."
-    .\platform-tools\adb.exe -s $adb install youtube2.apk
-    Write-Host "---Build Youtube Music Revanced Root---"
-    Write-Host "."
-    Write-Host "."
-    Write-Host "When building is over, close app in your phone"
-    .\zulu17\bin\java.exe -jar revanced-cli-all.jar -a youtube2.apk -c -d $adb -o revanced_music.apk -b revanced-patches.jar -m revanced-integrations.apk -e microg-support --experimental --mount
-    Read-Host -Prompt "Press Enter to continue"
-}
+
 function ytnonroot {
     Write-Host "---Uninstalling YouTube---"
     Write-Host "."
@@ -115,30 +89,6 @@ function ytnonroot {
     .\zulu17\bin\java.exe -jar revanced-cli-all.jar -a youtube1.apk -c -d $adb -o revanced_youtube.apk -b revanced-patches.jar -m revanced-integrations.apk -e premium-heading -e custom-branding -e sponsorblock -i swipe-controls --experimental
     Read-Host -Prompt "Press Enter to continue"
 }
-function ytmnonroot {
-    Write-Host "---Uninstalling YouTube Music---"
-    Write-Host "."
-    Write-Host "."
-    .\platform-tools\adb.exe -s $adb uninstall com.google.android.apps.youtube.music
-    Write-Host "---Installing Vanced Microg---"
-    Write-Host "."
-    Write-Host "."
-    .\platform-tools\adb.exe -s $adb install microg.apk
-    Write-Host "---Installing YouTube Music---"
-    Write-Host "."
-    Write-Host "."
-    .\platform-tools\adb.exe -s $adb install youtube2.apk
-    Write-Host "---Build Youtube Music Revanced Non-Root---"
-    Write-Host "."
-    Write-Host "."
-    Write-Host If display any warning that prevent instaling app through ADB - apply it!
-    Write-Host "."
-    Write-Host "."
-    Write-Host "When building is over, close app on your phone"
-    .\zulu17\bin\java.exe -jar revanced-cli-all.jar -a youtube2.apk -c -d $adb -o revanced_music.apk -b revanced-patches.jar -m revanced-integrations.apk --experimental
-    Read-Host -Prompt "Press Enter to continue"
-}
-
 
 $java = Test-Path -Path .\zulu17\bin\java.exe -PathType Leaf
 
@@ -173,7 +123,7 @@ $downloadrevanced = Read-Host -Prompt "You options is"
 if ( $downloadrevanced -like 'y' ) {
     downloadyt
     Clear-Host
-    downloadytm
+    # downloadytm
 }
 if ($downloadrevanced -like 'n') {
     Clear-Host
@@ -230,11 +180,7 @@ if ( $state -like $true) {
 
 # What do you want to build
 Write-Host "1. YouTube ReVanced Root"
-Write-Host "2. YouTube Music Revanced Root"
-Write-Host "3. All Root"  
-Write-Host "4. YouTube ReVanced Non-Root"
-Write-Host "5. YouTube Music ReVanced Non-Root"
-Write-Host "6. All Non-Root"
+Write-Host "2. YouTube ReVanced Non-Root"
 $option = Read-Host -Prompt "You options is" 
 Clear-Host
 
@@ -243,21 +189,7 @@ switch ($option) {
         ytroot
     }
     2 {
-        ytmroot
-    }
-    3 {
-        ytroot
-        ytmroot
-    }
-    4 {
         ytnonroot
-    }
-    5 {
-        ytmnonroot
-    }
-    6 {
-        ytnonroot
-        ytmnonroot
     }
     Default{
         Write-Host "Type number from 1 - 6"
