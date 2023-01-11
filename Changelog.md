@@ -1,3 +1,8 @@
+# v1.0.0
+## Changes
+1. Drop YouTube Music Root building
+2. Move to python
+
 # v0.9.3
 ## Changes
 1. YouTube update to 17.49.37
