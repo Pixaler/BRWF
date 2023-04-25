@@ -9,6 +9,7 @@ Scripts that automatically download and build YouTube ReVanced on Windows 10
 ## Attention
 
 Root version: To prevent Google Play auto-update, install YTDetach.zip in Magisk. 
+
 Script taken from: https://github.com/j-hc/mindetach-magisk
 
 ## Installation
