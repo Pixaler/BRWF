@@ -8,7 +8,8 @@ Scripts that automatically download and build YouTube ReVanced on Windows 10
 
 ## Attention
 
-I drop YouTube Music Root build, because it is buggy from release and I don't now how to fix it.
+Root version: To prevent Google Play auto-update, install YTDetach.zip in Magisk. 
+Script taken from: https://github.com/j-hc/mindetach-magisk
 
 ## Installation
 
