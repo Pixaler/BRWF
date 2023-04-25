@@ -13,7 +13,7 @@ I drop YouTube Music Root build, because it is buggy from release and I don't no
 ## Installation
 
 1. Unzip archive
-2. Run **_build.cmd_**
+2. Run **_BRWF_** shortcut
 
 ## Using
 
