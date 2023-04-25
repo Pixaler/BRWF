@@ -1,5 +1,4 @@
 /platform-tools
-/wget
 /zulu17
 /revanced-cache
 revanced-integrations.apk
@@ -9,3 +8,5 @@ adb.txt
 youtube1.apk
 youtube2.apk
 play.py
+requirements.txt
+options.toml
