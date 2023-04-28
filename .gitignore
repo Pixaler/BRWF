@@ -1,12 +1,26 @@
+# Git branches folders
+/branches
+
+# Output binaries dir
+/!output
+
+# Pythons directory
+/brwf/__pycache__
+
+# Scripts binaries
 /platform-tools
 /zulu17
-/revanced-cache
 revanced-integrations.apk
 revanced-cli-all.jar
 revanced-patches.jar
-adb.txt
+
+# Downloaded apk
 youtube1.apk
 youtube2.apk
-play.py
-requirements.txt
+
+# Scripts data files
+adb.txt
+
+# Revanced building files
+/revanced-cache
 options.toml
