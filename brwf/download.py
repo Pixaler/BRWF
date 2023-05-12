@@ -26,19 +26,13 @@ def download_java():
 
 
 def download_yt():
-    '''Download YouTube apk with stable support Revanced Extended'''
+    '''Download YouTube apk'''
     print("---Delete previous apk files---\n.")
     try:
         Remove("youtube1.apk")
     except FileNotFoundError:
         print("File don't exist")
     print(".\n---Download YT---")
-    # link_rp_json = "https://api.github.com/repos/inotia00/revanced-patches/releases/latest"
-    # request_site = requests.get(link_rp_json)
-    # json_file_link = request_site.json()["assets"][0]["browser_download_url"]
-    # responce = requests.get(json_file_link)
-    # json_data = responce.json()
-    # latest_version_yt = json_data[3]["compatiblePackages"][0]["versions"][-1]
 
     # Download YouTube apk
     link_yt = "https://android.biblprog.org.ua/ru/youtube/download/"
@@ -53,7 +47,7 @@ def download_yt():
 
 
 def download_ytm():
-    # Download YouTube Music apk
+    '''Download YouTube Music apk'''
     print("---Delete previous apk files---\n.")
     try:
         Remove("youtube2.apk")
@@ -71,6 +65,22 @@ def download_ytm():
     down_link_ytm = soup.find("a", href=re.compile("youtube-music-arm64-v8a"))["href"]
     print(".\n.\nWait")
     System(f"curl -LJ {down_link_ytm} -o youtube2.apk")
+
+def download_microg():
+    print("---Delete previous apk files---\n.")
+    try:
+        Remove("microg.apk")
+    except FileNotFoundError:
+        print("File don't exist")
+    print(".\n---Download mMicroG---")
+    git_microg = "https://api.github.com/repos/inotia00/mMicroG/releases/latest"
+    request_site = requests.get(git_microg)
+    data = request_site.json()["assets"][0]["browser_download_url"]
+    download_link_microg = data
+    
+    # Format received requests
+    print(".\n.\nWait")
+    System(f"curl -LJ {download_link_microg} -o microg.apk")
 
 
 def download_revanced():  # Download or update revance files

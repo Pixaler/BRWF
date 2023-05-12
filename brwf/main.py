@@ -7,7 +7,7 @@ if platform.system() == "Linux":
 else:
     from brwf.global_variables import JAVA_PATH_WIN as JAVA_PATH
 
-from brwf.download import download_java, download_yt, download_ytm, download_revanced
+from brwf.download import download_java, download_yt, download_ytm, download_revanced, download_microg
 from brwf.build import ytroot, ytnonroot, ytmroot, ytmnonroot
 from brwf.adb import check_adb
 
@@ -21,6 +21,7 @@ download_apk = input("Your option is: ")
 if download_apk == "y":  # Download or not YouTube apk
     download_yt()
     download_ytm()
+    download_microg()
 if download_apk == "n":
     time.sleep(1)
 
