@@ -6,6 +6,7 @@
 
 # Pythons directory
 /brwf/__pycache__
+/venv
 
 # Scripts binaries
 /platform-tools
